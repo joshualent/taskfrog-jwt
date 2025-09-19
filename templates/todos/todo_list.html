@@ -5,7 +5,7 @@
 {% block content %}
 <div class="row">
 <h1>Todo List</h1>
-<a href="{% url 'todo_new' %}" class="btn btn-success">New Todo+</a>
+<a href="{% url 'todo_new' %}" class="btn btn-success my-3">New Todo +</a>
 </div>
 {% for todo in todo_list %}
 <h2><a href="{{ todo.get_absolute_url }}">{{todo.title}}</a></h2>
