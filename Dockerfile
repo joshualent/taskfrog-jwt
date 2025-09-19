@@ -11,6 +11,16 @@ ADD . /app
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-dev
 
+# ---- Collect static at build-time ----
+# provide minimal env so Django can load settings and collect static
+ENV DJANGO_SETTINGS_MODULE=django_project.settings
+ENV SECRET_KEY=build-only-secret-key
+
+# If your settings read .env, either ensure it’s present or override values here.
+# IMPORTANT: STATIC_ROOT must be writable and matches settings.py (staticfiles/)
+RUN /app/.venv/bin/python manage.py collectstatic --noinput
+
+
 # Then, use a final image without uv
 FROM python:3.12-slim-bookworm
 
