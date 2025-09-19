@@ -19,7 +19,7 @@ SECRET_KEY = env.str("SECRET_KEY")
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.str("DEBUG", default=False)
+DEBUG = env.bool("DEBUG", default=False)
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", ".hyperfrog.win"]
